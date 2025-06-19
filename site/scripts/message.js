@@ -204,8 +204,8 @@ class ObjectUtil {
 // }
 
 class AsyncKeyval extends Keyval {
-    constructor(apiKey = KEYVAL_API_KEY) {
-        super(apiKey);
+    constructor() {
+        super();
     }
     async set(key, value) {
         value = JsonUtil.stringify(value);

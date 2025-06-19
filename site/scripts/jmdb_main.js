@@ -100,18 +100,18 @@ function constructURL(category, page, other) {
     "&" + other + "&include_adult=false&language=en&api_key=" + TMDB_API_KEY;
 }
 
-/**
- * Combines necessary elements to construct a Keyval API URL
- * @param {string} key - string for category
- * @returns string of fully constructed URL to load Keyval API.
- *          Example: https://keyval.learnscrum.xyz/keystore/{key}?api_key={api_key}
- * @author Cameron Barb
- */
-function constructKeyvalURL(key) {
-  // console.log("Value: " + keyvalAppend);
-  final_url = keyvalURL + key + keyvalAppend + KEYVAL_API_KEY;
-  return final_url;
-}
+// /**
+//  * Combines necessary elements to construct a Keyval API URL
+//  * @param {string} key - string for category
+//  * @returns string of fully constructed URL to load Keyval API.
+//  *          Example: https://keyval.learnscrum.xyz/keystore/{key}?api_key={api_key}
+//  * @author Cameron Barb
+//  */
+// function constructKeyvalURL(key) {
+//   // console.log("Value: " + keyvalAppend);
+//   final_url = keyvalURL + key + keyvalAppend + KEYVAL_API_KEY;
+//   return final_url;
+// }
 
 /**
  * display list of movies with picture and title

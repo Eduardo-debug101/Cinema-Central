@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function updateFriendProfileUI(userID) {
 
-    keyval = new Keyval(KEYVAL_API_KEY);
+    keyval = new Keyval();
 
     if (!userID || userID === 'null') {
         console.log("Invalid user ID");
@@ -34,7 +34,7 @@ function updateFriendProfileUI(userID) {
 }
 
 function loadFriendProfilePicture(userID) {
-    keyval = new Keyval(KEYVAL_API_KEY);
+    keyval = new Keyval();
 
     if (!userID || userID === 'null') {
         console.log("Invalid user ID");
@@ -116,7 +116,7 @@ function showFriendWatching() {
 }
 
 function loadFriendFavoriteMovies(userID) {
-    keyval = new Keyval(KEYVAL_API_KEY);
+    keyval = new Keyval();
 
 
     // get parent for where everything should go
@@ -171,7 +171,7 @@ function loadFriendFavoriteMovies(userID) {
 }
 
 function loadFriendFavoriteGenres(userID) {
-    keyval = new Keyval(KEYVAL_API_KEY);
+    keyval = new Keyval();
   
       keyval.get("user-" + userID,
         function (result) {
@@ -202,7 +202,7 @@ function loadFriendFavoriteGenres(userID) {
 }
 
 function loadFriendWatchlistMovies(userID) {
-    keyval = new Keyval(KEYVAL_API_KEY);
+    keyval = new Keyval();
   
     // get parent for where everything should go
     let parent = document.getElementById("watched-movies");
@@ -252,7 +252,7 @@ function loadFriendWatchlistMovies(userID) {
 }
 
 function loadFriendBookmarkedMovies(userID) {
-    keyval = new Keyval(KEYVAL_API_KEY);
+    keyval = new Keyval();
   
     // get parent for where everything should go
     let parent = document.getElementById("bookmarked-movies");
@@ -302,7 +302,7 @@ function loadFriendBookmarkedMovies(userID) {
 }
 
 function loadFriendFavoritePeople(userID) {
-    keyval = new Keyval(KEYVAL_API_KEY);
+    keyval = new Keyval();
   
     let parent = document.getElementById("favorite-people-container");
   

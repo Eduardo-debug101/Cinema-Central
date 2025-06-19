@@ -378,7 +378,7 @@ function loadActors(jsonResults) {
  * @author Luke Davis
  */
 function loadButtons(id) {
-  let keyval = new Keyval(KEYVAL_API_KEY);
+  let keyval = new Keyval();
   // check that the user is logged in
   if (localStorage.getItem('logged_in_user') != "") {
     // show bookmark button
@@ -488,7 +488,7 @@ function loadButtons(id) {
  * @author Luke Davis
  */
 function bookmarkMovie(event) {
-  keyval = new Keyval(KEYVAL_API_KEY);
+  keyval = new Keyval();
 
   // get button
   let button = document.getElementById(event.srcElement.id);
@@ -536,7 +536,7 @@ function bookmarkMovie(event) {
  * @author Luke Davis
  */
 function setBookmarks(jsonResults, movieID) {
-  keyval = new Keyval(KEYVAL_API_KEY);
+  keyval = new Keyval();
 
   // find which user is logged in
   let loggedInUserID = localStorage.getItem('logged_in_user');
@@ -638,7 +638,7 @@ function setBookmarks(jsonResults, movieID) {
  * @author Luke Davis
  */
 function watchlistMovie(event) {
-  keyval = new Keyval(KEYVAL_API_KEY);
+  keyval = new Keyval();
 
   // get button
   let button = document.getElementById(event.srcElement.id);
@@ -672,7 +672,7 @@ function watchlistMovie(event) {
  * @author Luke Davis
  */
 function setWatchlist(jsonResults, movieID) {
-  keyval = new Keyval(KEYVAL_API_KEY);
+  keyval = new Keyval();
 
   let loggedInUserID = localStorage.getItem('logged_in_user');
   // let current_watchlist = constructKeyvalURL(loggedInUser + "-watchlist");
@@ -763,7 +763,7 @@ function setWatchlist(jsonResults, movieID) {
  * @param {button_event} event - entire result when button is pressed (not used)
  */
 function favoriteMovie(event) {
-  keyval = new Keyval(KEYVAL_API_KEY);
+  keyval = new Keyval();
 
   // get button
   let button = document.getElementById(event.srcElement.id);
@@ -795,7 +795,7 @@ function favoriteMovie(event) {
  * @param {string} movieID - ID of the movie to add/remove
  */
 function setFavorites(jsonResults, movieID) {
-  keyval = new Keyval(KEYVAL_API_KEY);
+  keyval = new Keyval();
 
   // find which user is logged in
   let loggedInUserID = localStorage.getItem('logged_in_user');

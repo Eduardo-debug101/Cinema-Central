@@ -96,7 +96,7 @@ class SiteNavBar extends NavigationBar {
     }
 
     getUsername() {
-        let keyval = new Keyval(KEYVAL_API_KEY);
+        let keyval = new Keyval();
 
         keyval.get("user-" + getItem('logged_in_user'),
             function (results) {
@@ -117,7 +117,7 @@ class SiteNavBar extends NavigationBar {
     }
 
     setProfilePicture() {
-        let keyval = new Keyval(KEYVAL_API_KEY);
+        let keyval = new Keyval();
 
         keyval.get("user-" + getItem('logged_in_user'),
             (results) => {

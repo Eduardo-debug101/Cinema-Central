@@ -45,18 +45,21 @@ function redirectToSignupPage() {
 * Compares password stored in keyval to login_password,
 * which is the password the user entered into the login input.
 * @param {string} result - The string stored at password keyval
-* @author: Cameron Barb
+* @author: Eduardo Argueta-Pineda
 **/
 function checkPassword(result) {
+    // If user_list does not exist, treat as no users
+    if (!result) {
+        alert("User not found. Please sign up.");
+        window.location.href = "sign_up_page.html?username=" + login_username + "&password=" + login_password;
+        return;
+    }
+
     let jsonResults = JSON.parse(result);
 
-    console.log(jsonResults);
     for (let i = 0; i < jsonResults.users.length; i++) {
-
         if (login_username == jsonResults.users[i].username) {
             if (login_password == jsonResults.users[i].password) {
-                // console.log("id: "+ jsonResults.users[i].id);
-                // console.log("username: "+ jsonResults.users[i].username);
                 storeItem('logged_in_user', jsonResults.users[i].id);
                 storeItem('logged_in_username', jsonResults.users[i].username)
                 window.location.href = "index.html";
@@ -71,16 +74,6 @@ function checkPassword(result) {
 
     alert("User not found. Please sign up.");
     window.location.href = "sign_up_page.html?username=" + login_username + "&password=" + login_password;
-    // redirectToSignupPage();
-
-    // if (login_password == jsonResults.){
-    //     storeItem('logged_in_user', login_username);
-    //     window.location.href = "index.html";
-    //     setLoggedInSession(login_username);
-    // }
-    // else{
-    //     alert("Wrong password");
-    // }
 }
 
 /**
@@ -91,7 +84,7 @@ function checkPassword(result) {
 function loginUser(username = document.getElementById("usernameInput").value, password = document.getElementById("passwordInput").value) {
     login_username = username;
     login_password = password;
-    keyval = new Keyval(KEYVAL_API_KEY);
+    keyval = new Keyval();
     if (!login_username || !login_password) {
         alert("Must input a username and password.");
     }
@@ -123,7 +116,7 @@ function createUser() {
     signup_username = document.getElementById("signupUsernameInput").value;
     signup_password = document.getElementById("signupPasswordInput").value;
 
-    keyval = new Keyval(KEYVAL_API_KEY);
+    keyval = new Keyval();
     if (!signup_username || !signup_password) {
         alert("Must input a username and password");
     }
@@ -139,7 +132,7 @@ function createUser() {
 }
 
 function userListError() {
-    keyval = new Keyval(KEYVAL_API_KEY);
+    keyval = new Keyval();
     alert("You were the first user. User list was created. Please try again");
     keyval.set("user_list", "{\"users\":[]}", function () { }, genericKeyvalError);
 }
@@ -159,7 +152,7 @@ function createUserKey(jsonResults) {
         alert("Must input a username and password.");
     }
     else {
-        keyval = new Keyval(KEYVAL_API_KEY);
+        keyval = new Keyval();
         console.log(signup_password);
         console.log(concatNewUsersJSON(jsonResults, signup_username, signup_password));
         current_user_id = (jsonResults.users.length + 1);
@@ -250,27 +243,32 @@ function invalidUsername() {
  * 
  * Called if createUser() finds that the provided
  * username already exists in keyval.
- * @author Cameron Barb
+ * @author Eduardo Argueta-Pineda
 **/
 function listFound(result) {
-    let jsonResults = JSON.parse(result);
-
-    if (jsonResults.users.length == 0) {
-        console.log("Setting up first user.");
-        console.log("Creating new user...");
-        createUserKey(jsonResults);
-        console.log("User created.");
+    // If user_list does not exist, initialize it
+    if (!result) {
+        result = JSON.stringify({ users: [] });
     }
 
+    let jsonResults = JSON.parse(result);
+
+    // If no users, create the first user
+    if (jsonResults.users.length == 0) {
+        console.log("Setting up first user.");
+        createUserKey(jsonResults);
+        return;
+    }
+
+    // Check if username already exists
     for (let i = 0; i < jsonResults.users.length; i++) {
         if (signup_username == jsonResults.users[i].username) {
             alert("User already exists. Please log in.");
             redirectToLoginPage();
-        } else if (i == jsonResults.users.length - 1) {
-            console.log("Creating new user...");
-            createUserKey(jsonResults);
-            console.log("User created.");
+            return;
         }
     }
-    // alert("Username already in use, please sign in.");
+
+    // If username not found, create new user
+    createUserKey(jsonResults);
 }

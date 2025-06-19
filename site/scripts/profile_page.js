@@ -156,7 +156,7 @@ function showFriends() {
  * @authors Patrick Meyers and Luke Davis
  */
 function updateProfileUI() {
-  keyval = new Keyval(KEYVAL_API_KEY);
+  keyval = new Keyval();
 
   const loggedInUserID = localStorage.getItem('logged_in_user');
 
@@ -188,7 +188,7 @@ function updateProfileUI() {
  * @author Patrick Meyers
  */
 function displayEditControls() {
-  keyval = new Keyval(KEYVAL_API_KEY);
+  keyval = new Keyval();
 
   if (cancel_changes) {
     showProfile();
@@ -266,7 +266,7 @@ function saveProfileChanges() {
  * @authors Patrick Meyers and Luke Davis
  */
 function loadBioInformation() {
-  keyval = new Keyval(KEYVAL_API_KEY);
+  keyval = new Keyval();
 
   const logged_in_user = localStorage.getItem('logged_in_user');
   if (logged_in_user) {
@@ -285,7 +285,7 @@ function loadBioInformation() {
 }
 
 function updateUser(id, newUsername) {
-  keyval = new Keyval(KEYVAL_API_KEY);
+  keyval = new Keyval();
   const loggedInUserID = veryifyLoggedInUser();
 
   console.log("getting here");
@@ -306,7 +306,7 @@ function updateUser(id, newUsername) {
 }
 
 function updatePass(id, newPassword) {
-  keyval = new Keyval(KEYVAL_API_KEY);
+  keyval = new Keyval();
   const loggedInUserID = veryifyLoggedInUser();
 
   keyval.get("user_list",
@@ -349,7 +349,7 @@ function updatePass(id, newPassword) {
 }
 
 function updateUserHelper(id, newUsername) {
-  keyval = new Keyval(KEYVAL_API_KEY);
+  keyval = new Keyval();
   const loggedInUserID = veryifyLoggedInUser();
   // if (!loggedInUserID) {
   //   return;
@@ -358,7 +358,7 @@ function updateUserHelper(id, newUsername) {
   // updating user info
   keyval.get("user-" + loggedInUserID,
     function (results) {
-      keyval = new Keyval(KEYVAL_API_KEY);
+      keyval = new Keyval();
       let jsonResults = JSON.parse(results);
 
       let oldUsername = jsonResults.user_info[0].username;
@@ -371,7 +371,7 @@ function updateUserHelper(id, newUsername) {
           // update user list
           keyval.get("user_list",
           function (results) {
-            keyval = new Keyval(KEYVAL_API_KEY);
+            keyval = new Keyval();
             let jsonResults = JSON.parse(results);
             for (let i = 0; i < jsonResults.users.length; i++) {
               if (jsonResults.users[i].id == id) {
@@ -419,13 +419,13 @@ function updateUserHelper(id, newUsername) {
  * @authors Patrick Meyers and Luke Davis
  */
 function saveBioInformation(updatedBio) {
-  keyval = new Keyval(KEYVAL_API_KEY);
+  keyval = new Keyval();
   const logged_in_user = localStorage.getItem('logged_in_user');
   // const url = constructKeyvalURL('bio_' + loggedInUser);
 
   keyval.get("user-" + logged_in_user,
     function (results) {
-      keyval = new Keyval(KEYVAL_API_KEY);
+      keyval = new Keyval();
 
       let jsonResults = JSON.parse(results);
 
@@ -471,7 +471,7 @@ function previewProfilePicture() {
  * @authors Patrick Meyers and Luke Davis
  */
 function updateProfilePicture() {
-  keyval = new Keyval(KEYVAL_API_KEY);
+  keyval = new Keyval();
 
   const selector = document.getElementById('profile-picture-selector');
   const newPicSrc = selector.value;
@@ -481,7 +481,7 @@ function updateProfilePicture() {
   if (loggedInUserID) {
     keyval.get("user-" + loggedInUserID,
       function (result) {
-        keyval = new Keyval(KEYVAL_API_KEY);
+        keyval = new Keyval();
         let jsonResults = JSON.parse(result);
         jsonResults.user_info[0].profile_pic = newPicSrc;
 
@@ -509,7 +509,7 @@ function updateProfilePicture() {
  * @authors Patrick Meyers and Luke Davis
  */
 function loadProfilePicture() {
-  keyval = new Keyval(KEYVAL_API_KEY);
+  keyval = new Keyval();
   const loggedInUserID = localStorage.getItem('logged_in_user');
   if (loggedInUserID) {
     // const url = constructKeyvalURL('profile_pic_' + loggedInUser);
@@ -570,7 +570,7 @@ function updateFriendRequests() {
   const loggedInUser = veryifyLoggedInUser();
 
   // Create keyval object
-  let keyval = new Keyval(KEYVAL_API_KEY);
+  let keyval = new Keyval();
 
   // Get friend request list from keyval
   keyval.get("user-" + loggedInUser, function (result) {
@@ -599,7 +599,7 @@ function updateFriendList() {
   const loggedInUser = veryifyLoggedInUser();
 
   // Create keyval object
-  let keyval = new Keyval(KEYVAL_API_KEY);
+  let keyval = new Keyval();
 
   keyval.get("user-" + loggedInUser, function (result) {
     // Parse JSON
@@ -665,7 +665,7 @@ function sendFriendRequest(event) {
     if (friend_username != null && friend_username != "") {
 
       // Create keyval object
-      let keyval = new Keyval(KEYVAL_API_KEY);
+      let keyval = new Keyval();
 
       // Get user list and check for username
       keyval.get("user_list", function (result) {
@@ -697,7 +697,7 @@ function sendFriendRequest(event) {
 **/
 function friendExists() {
   // Create keyval object
-  let keyval = new Keyval(KEYVAL_API_KEY);
+  let keyval = new Keyval();
 
   // Get logged in user
   let logged_in_user = veryifyLoggedInUser();
@@ -749,7 +749,7 @@ function addToFriendRequestList(friend_json) {
   // Verify user is logged in
   let loggedInUser = veryifyLoggedInUser();
 
-  let keyval = new Keyval(KEYVAL_API_KEY);
+  let keyval = new Keyval();
 
   keyval.set("user-" + friend_id, JSON.stringify(friend_json), function (result) {
     alert("Sent a friend request!");
@@ -771,7 +771,7 @@ function rejectFriend(_friend_name) {
   let loggedInUser = veryifyLoggedInUser();
 
   // Create keyval object
-  let keyval = new Keyval(KEYVAL_API_KEY);
+  let keyval = new Keyval();
 
   // Find friend ID using friend name
   friend_id = _friend_name;
@@ -796,7 +796,7 @@ function rejectFriendUpdate(result) {
   let loggedInUser = veryifyLoggedInUser();
 
   // Create Keyval object
-  let keyval = new Keyval(KEYVAL_API_KEY);
+  let keyval = new Keyval();
 
   // Parse result into JSON
   let jsonResult = JSON.parse(result);
@@ -840,7 +840,7 @@ function rejectFriendUpdate(result) {
 function acceptFriend(_friend_name) {
 
   // Create Keyval Object
-  let keyval = new Keyval(KEYVAL_API_KEY);
+  let keyval = new Keyval();
 
   // Get the user list and call a function to run setters
   keyval.get("user_list", function (result) {
@@ -977,7 +977,7 @@ function acceptFriendUpdateAccepter(result) {
   let jsonResult = JSON.parse(result);
 
   // Create Keyval object
-  let keyval = new Keyval(KEYVAL_API_KEY);
+  let keyval = new Keyval();
 
   // Splice accepters friend request list
   friend_request_list = jsonResult.user_info[0].friend_requests;
@@ -1018,7 +1018,7 @@ function acceptFriendUpdateSender(result) {
   let logged_in_user = veryifyLoggedInUser();
 
   // Create Keyval Object
-  let keyval = new Keyval(KEYVAL_API_KEY);
+  let keyval = new Keyval();
 
   // Parse result to get JSON
   jsonResult = JSON.parse(result);
@@ -1052,7 +1052,7 @@ function removeFriend(_friend_id) {
   let logged_in_user = veryifyLoggedInUser();
 
   // Create Keyval Object
-  let keyval = new Keyval(KEYVAL_API_KEY);
+  let keyval = new Keyval();
   friend_to_remove_id = _friend_id;
 
   // Get user data and call removeFriendUpdate()
@@ -1081,7 +1081,7 @@ function removeFriendUpdateRemover(result) {
   let logged_in_user = veryifyLoggedInUser();
 
   // Create Keyval Object
-  let keyval = new Keyval(KEYVAL_API_KEY);
+  let keyval = new Keyval();
 
   // Parse result to JSON
   let jsonResult = JSON.parse(result);
@@ -1116,7 +1116,7 @@ function removeFriendUpdateFriend(result) {
   let logged_in_user = veryifyLoggedInUser();
 
   // Create Keyval Object
-  let keyval = new Keyval(KEYVAL_API_KEY);
+  let keyval = new Keyval();
 
   // Parse result to JSON
   let jsonResult = JSON.parse(result);
@@ -1148,7 +1148,7 @@ function removeFriendUpdateFriend(result) {
 **/
 function friendRequestList() {
   // Create keyval object
-  let keyval = new Keyval(KEYVAL_API_KEY);
+  let keyval = new Keyval();
 
   // Get user list for getting usernames
   keyval.get("user_list", function (result) {
@@ -1245,7 +1245,7 @@ function createFriendRequestElement(_friend_name, _friend_id) {
   friend_request_div.appendChild(friend_profile_picture_container);
 
   // Create Keyval Object
-  let keyval = new Keyval(KEYVAL_API_KEY);
+  let keyval = new Keyval();
 
   // Use keyval to retrieve friends profile picture
   keyval.get("user-" + _friend_id, function (result) {
@@ -1305,7 +1305,7 @@ function createFriendRequestElement(_friend_name, _friend_id) {
  */
 function friendList() {
   // Create keyval object
-  let keyval = new Keyval(KEYVAL_API_KEY);
+  let keyval = new Keyval();
 
   // Get user list for getting usernames
   keyval.get("user_list", function (result) {
@@ -1402,7 +1402,7 @@ function createFriendElement(_friend_name, _friend_id) {
   friend_div.appendChild(friend_profile_picture_container);
 
   // Create Keyval Object
-  let keyval = new Keyval(KEYVAL_API_KEY);
+  let keyval = new Keyval();
 
   // Use keyval to retrieve friends profile picture
   keyval.get("user-" + _friend_id, function (result) {
@@ -1499,7 +1499,7 @@ document.addEventListener('DOMContentLoaded', updateProfileUI);
  * @author Luke Davis
  */
 function loadWatchlistMovies() {
-  keyval = new Keyval(KEYVAL_API_KEY);
+  keyval = new Keyval();
 
   // find who is logged in
   let loggedInUserID = localStorage.getItem('logged_in_user');
@@ -1571,7 +1571,7 @@ function loadWatchlistMovies() {
  * @author Luke Davis
  */
 function loadBookmarkedMovies() {
-  keyval = new Keyval(KEYVAL_API_KEY);
+  keyval = new Keyval();
 
   // find who is logged in
   let loggedInUserID = localStorage.getItem('logged_in_user');
@@ -1639,7 +1639,7 @@ function loadBookmarkedMovies() {
 }
 
 function loadFavoriteMovies() {
-  keyval = new Keyval(KEYVAL_API_KEY);
+  keyval = new Keyval();
 
   // find who is logged in
   let loggedInUserID = localStorage.getItem('logged_in_user');
@@ -1706,7 +1706,7 @@ function loadFavoriteMovies() {
 }
 
 function loadFavoriteGenres() {
-  keyval = new Keyval(KEYVAL_API_KEY);
+  keyval = new Keyval();
   const loggedInUserID = localStorage.getItem('logged_in_user');
 
   if (loggedInUserID) {
@@ -1741,7 +1741,7 @@ function loadFavoriteGenres() {
 
 
 function updateFavoriteGenres() {
-  keyval = new Keyval(KEYVAL_API_KEY);
+  keyval = new Keyval();
 
   const selectedGenre = document.getElementById("favorite-genres-dropdown").value;
   const loggedInUserID = localStorage.getItem('logged_in_user');
@@ -1749,7 +1749,7 @@ function updateFavoriteGenres() {
   if (loggedInUserID) {
     keyval.get("user-" + loggedInUserID,
       function (result) {
-        keyval = new Keyval(KEYVAL_API_KEY);
+        keyval = new Keyval();
         let jsonResults = JSON.parse(result);
 
         // Update the array of favorite genres
@@ -1805,7 +1805,7 @@ function updateFavoriteGenres() {
  * Load favorite people onto the profile page.
  */
 function loadFavoritePeople() {
-  keyval = new Keyval(KEYVAL_API_KEY);
+  keyval = new Keyval();
 
   let loggedInUserID = localStorage.getItem('logged_in_user');
   let parent = document.getElementById("favorite-people-container");

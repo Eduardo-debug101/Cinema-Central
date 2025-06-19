@@ -11,12 +11,12 @@ let keyval;
  * @author Luke Davis
  */
 function reset_users() {
-    keyval = new Keyval(KEYVAL_API_KEY);
+    keyval = new Keyval();
 
     // Get user list
     keyval.get("user_list", 
         function (results) {
-            let keyval = new Keyval(KEYVAL_API_KEY);
+            let keyval = new Keyval();
 
             // check if list is already empty
             if (results == "") {

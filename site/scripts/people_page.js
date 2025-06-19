@@ -102,7 +102,7 @@ function loadPerson(results) {
  * 
  */
 function addFavoriteButton(id) {
-  keyval = new Keyval(KEYVAL_API_KEY);
+  keyval = new Keyval();
 
   if (localStorage.getItem('logged_in_user') != "") {
     let favoriteButton = new Button("❤️", document.getElementById("buttons"), [], {}, favoritePerson);
@@ -134,7 +134,7 @@ function addFavoriteButton(id) {
 
 function favoritePerson(personId) {
   console.log('Favoriting person with ID:', personId);
-  keyval = new Keyval(KEYVAL_API_KEY);
+  keyval = new Keyval();
 
   // get button
   let button = document.getElementById(personId.srcElement.id);
@@ -167,7 +167,7 @@ function favoritePerson(personId) {
  * @param {string} personID - ID of the people to add or remove
  */
 function setFavoritePerson(jsonResults, personID) {
-  keyval = new Keyval(KEYVAL_API_KEY);
+  keyval = new Keyval();
 
 
   let loggedInUserID = localStorage.getItem('logged_in_user');
