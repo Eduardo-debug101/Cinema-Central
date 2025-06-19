@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Results</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <script src="../p5.js"></script>
+    <script src="../api_keys.js"></script>
+  </head>
+  <body onload="searchMovies()" >
+    <div class="header" data-page-name="movies"></div>
+    <main style="overflow:auto;">
+      <div class="subheader tmdb-list-options">
+        <label class="tmdb-list-item" >
+          Search: 
+          <div class="search-box">
+            <!-- Search Input -->
+            <input id="searchInput" class="tmdb-list-input" type="text" placeholder="Search for movies" onkeyup="handleSearchInput(event)">
+            <!-- Search Input Button -->
+            <button id="searchButton" class="tmdb-list-input" onclick="redirectToSearchPage()">Search</button>
+          </div>
+        </label>
+      </div>
+      <h1 class="search_results_title">Search Results</h1>
+      <div id="searchResults" class="search_results">
+        <!-- Display search results here -->
+      </div>
+    </main>
+    <script>
+      function handleSearchInput(event) {
+        if (event.key === "Enter") {
+          document.getElementById("searchButton").click();
+        }
+      }
+    </script>
+    <script src="scripts/element_class.js"></script>
+    <script src="scripts/navigation_bar.js"></script>
+    <script src="scripts/login_page.js"></script>
+    <script src="scripts/movie_page.js"></script>
+    <script src="scripts/jmdb_main.js"></script>
+    <script src="scripts/search.js"></script>
+    <script src="scripts/search_list.js"></script>
+    <script src="../lib/keyval.js"></script>
+  </body>
+</html>
+

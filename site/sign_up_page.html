@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup Page</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <script src="../p5.js"></script>
+    <script src="../api_keys.js"></script>
+  </head>
+  <body onload="loadPageParams()">
+    <div class="header" data-page-name="register">
+    </div>
+    <!-- Main Content -->
+    <main class="form">
+        <!-- Signup Stuff -->
+        <form onsubmit="return createUser()" class="login_page_content">
+            <!-- Title -->
+            <h1 class="login_page_title">Signup</h1>
+            <!-- Username Input -->
+            <label for="signupUsernameInput">
+              Username: 
+            </label>
+            <input class="login_page_input" 
+            id="signupUsernameInput"
+            type="text"
+            placeholder="USERNAME"
+            >
+            <!-- Password Input -->
+            <label for="signupPasswordInput">
+              Password: 
+            </label>
+            <input class="login_page_input" 
+            id="signupPasswordInput"
+            type="password"
+            placeholder="PASSWORD"
+            >
+            <!-- Signup Button -->
+            <button class="login_button">Sign Up</button>
+        </form>
+    </main>
+    <script>
+        function handleSearchInput(event) {
+            if (event.key === "Enter") {
+                document.querySelector('.header button:last-child').click();
+            }
+        }
+    </script>
+    <script src="scripts/element_class.js"></script>
+    <script src="scripts/navigation_bar.js"></script>
+    <script src="scripts/login_page.js"></script>
+    <script src="scripts/movie_page.js"></script>
+    <script src="scripts/jmdb_main.js"></script>
+    <script src="scripts/search.js"></script>
+    <script src="../lib/keyval.js"></script>
+  </body>
+</html>

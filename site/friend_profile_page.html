@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile - Cinema Central</title>
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <script src="../p5.js"></script>
+  <script src="../api_keys.js"></script>
+</head>
+
+<body>
+  <!-- Header -->
+  <div class="header" data-page-name="profile">
+
+  </div>
+
+  <!-- Main content area for the profile -->
+  <main style="overflow:auto;">
+    <div id="user-profile">
+      <div class="profile-box">
+
+        <!-- Navigation buttons -->
+        <div id="profile-navigation-buttons" style="border-bottom:5px solid white; padding-bottom: 8px; margin-bottom: 30px;">
+          <button id="profile-only-button" class="selected-standard-button" onclick="showFriendProfile()">Profile</button>
+          <button id="favorites-button" class="standard-button" onclick="showFriendFavorites()">Favorites</button>
+          <button id="watching-button" class="standard-button" onclick="showFriendWatching()">Watching</button>
+          <button id="friends-button" class="standard-button" style="display:none"; >Friends</button>
+          <button id="edit-profile-button" class="standard-button" style="display: none;">Edit Profile</button>
+        </div>
+
+        <!-- Profile picture -->
+        <div id="profile-pic-div">
+          <img id="profile-picture2" src="assets/Loading_Placeholder.png" alt="Profile Picture" class="center">
+        </div>
+        
+        <!-- Dropdown for selecting a profile picture -->
+        <div id="picture-edit-controls" style="display: none;">
+          <select id="profile-picture-selector">
+            <option value="" selected disabled hidden>Choose...</option>
+            <option value="assets/profile_picture_1.jpg">Flower</option>
+            <option value="assets/profile_picture_2.jpg">Retro</option>
+            <option value="assets/anime.jpg">Anime</option>
+            <option value="assets/anya.jpg">Anya</option>
+          </select>
+        </div>
+
+        <!-- Other profile information -->
+        <div id="profile-info">
+          <h1 id="friend-username" class="title">-Username-</h1>
+          <p id="friend-bio">-Bio goes here...-</p>
+        </div>
+
+        <!-- Edit Section -->
+        <div id="edit-controls" style="display: none;">
+          <input type="text" id="username-edit" placeholder="Enter new username">
+          <input type="password" id="password-edit" placeholder="Enter new password">
+          <textarea id="bio-edit" placeholder="Enter your bio here"></textarea>
+          <button class="save-changes-button">Save Changes</button>
+        </div>
+
+        <!-- Favorites Section -->
+        <div id="favorites-section" style="display:none;">
+          <!-- Favorite Movies Section -->
+          <div id="favorite-movies-section">
+            <h2 class="friend_requests">Favorite Movies</h2>
+            <div id="favorite-movies"></div>
+          </div>
+
+          <!-- Favorite Genres Section -->
+          <div id="favorite-genres-section">
+            <h2 class="friend_requests">Favorite Genres</h2>
+            <div id="favorite-genres-container"></div>
+          </div>
+
+
+          <!-- Favorite Actors Section -->
+          <div id="favorite-people-section">
+            <h2 class="friend_requests">Favorite People</h2>
+            <div id="favorite-people-container"></div>
+          </div>
+        </div>
+        
+        <!-- Friends section -->
+        <div id="all-friend-elements" style="display:none;">
+
+          <div id="friends-section">
+            <h2>Friends</h2>
+            <div id="friends-list" class = "friend-request-list-container"></div>
+          </div>
+
+          <div>
+            <h2 class=friend_requests>Friend Requests</h2>
+            <div id="friend-request-list" class = "friend-request-list-container"></div>
+          </div>
+
+          <div class="friend_request_input_container">
+            <div class="friend_request_input">
+              <h2>Send Friend Requests</h2>
+              <input id="friend_request_input" class="friend-request-input-box" type="text" placeholder="Input Username">
+            </div>
+          </div>
+      </div>
+
+        <!-- Movie queues -->
+        <div id="watching-movies" style="display:none;">
+          <!-- Movie Watchlist Section -->
+          <div id="watchlist-movie-section">
+            <h2 class="friend_requests">Watched List</h2>
+            <div id="watched-movies"></div>
+          </div>
+
+          <!-- Bookmarked Movies -->
+          <div id="bookmarked-movie-section">
+            <h2 class="friend_requests">Watch Later List</h2>
+            <div id="bookmarked-movies"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="scripts/friend_profile_page.js"></script>
+  <script src="scripts/element_class.js"></script>
+  <script src="scripts/navigation_bar.js"></script>
+  <script src="scripts/profile_page.js"></script>
+  <script src="scripts/login_page.js"></script>
+  <script src="scripts/movie_page.js"></script>
+  <script src="scripts/jmdb_main.js"></script>
+  <script src="scripts/search.js"></script>
+  <script src="scripts/search_list.js"></script>
+  <script src="../lib/keyval.js"></script>
+</body>
+</html>

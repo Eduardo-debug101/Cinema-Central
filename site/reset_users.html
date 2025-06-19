@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Reset Users</title>
+        <link rel="stylesheet" href="styles/style.css">
+        <script src="../lib/keyval.js"></script>
+        <script src="../p5.js"></script>
+        <script src="../api_keys.js"></script>
+        <script src="../reset_users.js"></script>
+        <script src="../jmdb_main.js"></script>
+    </head>
+    <style>
+        .reset-button {
+            text-align: center;
+            background-color: red;
+            color: white;
+            border-radius: 15px;
+            padding: 10px 27px;
+            cursor: pointer;
+        }
+
+        .reset-button:hover {
+            transform: scale(1.05);
+        }
+    </style>
+    <body style="background-color:white;">
+        <main>
+            <h1 style="text-align: center; color: red;">WARNING: This action cannot be undone!</h1>
+            <h2 style="text-align: center; color: red;">All users will be deleted.</h2>
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <button id="reset-users" class="reset-button" onclick="reset_users()">CONFIRM RESET</button>
+            </div>
+            
+            <script src="scripts/reset_users.js"></script>
+            <script src="scripts/jmdb_main.js"></script>
+            <script src="../lib/keyval.js"></script>
+        </main>
+    </body>
+</html>

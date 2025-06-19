@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Movie Page</title>
+        <link rel="stylesheet" href="styles/style.css">
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+        <script src="../p5.js"></script>
+        <script src="../api_keys.js"></script>
+    </head>
+    <main style="overflow:auto;">
+        <body onload="loadPage()">
+            <div class="header" data-page-name="movies">
+    
+            </div>
+    
+            <div class="movie_page">
+                <div class="movie_page_left">
+                    <img class="movie_page_image" id="movie_page_image"
+                        src="assets\default_movie.jpg">
+                    <h1 class="movie_title" id="Movie Name">-Loading-</h1>
+                    <h1 class="movie_detail_text" id="Movie Details">-Loading-</h1>
+                    <h1 class="movie_tagline" id="Movie Tagline">-Loading-</h1>
+                    <div id="buttonContainer">
+                        <div id="buttons"
+                            style="display: flex; flex-direction: column; align-items: center;"></div>
+                    </div>
+                </div>
+    
+                <div class="movie_page_right">
+                    <button class="redirectToDiscussion">Movie Discussion</button>
+                    <div class="movie_page_right_content">
+                        <h1>Movie Overview: </h1>
+                        <h3 id="movie_description_text">-Movie Description-</h3>
+    
+                        <div id="video-container"></div>
+                        
+                        <div id="director_div">
+                            <h1>Directors:</h1>
+                            <div id="director_here"></div>
+                        </div>
+    
+                        <div id="actors_div">
+                            <h1>Actors:</h1>
+                            <div id="actors_here"></div>
+                        </div>
+    
+                        <div id="reviews_div">
+                            <h1>Reviews: (<span id="total_reviews"></span>)</h1>
+                            <div id="reviews_here"></div>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                function handleSearchInput(event) {
+                    if (event.key === "Enter") {
+                        document.querySelector('.subheader button:last-child').click();
+                    }
+                }
+            </script>
+                <script src="scripts/element_class.js"></script>
+                <script src="scripts/navigation_bar.js"></script>
+                <script src="scripts/login_page.js"></script>
+                <script src="scripts/movie_page.js"></script>
+                <script src="scripts/jmdb_main.js"></script>
+                <script src="scripts/search.js"></script>
+                <script src="../lib/keyval.js"></script>
+            </body>
+        </main>
+    </html>

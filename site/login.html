@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login page</title>
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+  <script src="../p5.js"></script>
+  <script src="../api_keys.js"></script>
+</head>
+
+<body>
+  <div class="header" data-page-name="login">
+  </div>
+  <!-- Main Content -->
+  <main class="form">
+    <!-- Login Stuff -->
+    <div class="login_page_content form">
+      <!-- Title -->
+      <h1 class="login_page_title">Login</h1>
+      <!-- Username Input -->
+      <label for="usernameInput">
+        Username: 
+      </label>
+      <input class="login_page_input" id="usernameInput" type="text" placeholder="USERNAME">
+      <!-- Password Input -->
+      <label for="passwordInput">
+        Password: 
+      </label>
+      <input class="login_page_input" id="passwordInput" type="password" placeholder="PASSWORD">
+      </input>
+      <!-- Login Button -->
+      <button class="login_button" id="loginButton">Login</button>
+      <!-- <h1 class="login_page_title">OR</h1> -->
+      <button class="login_button" onclick="redirectToSignupPage()">Sign Up</button>
+    </div>
+  </main>
+  <script>
+    // Wait for the DOM to be ready
+    document.addEventListener("DOMContentLoaded", function () {
+      // Get the login button element
+      var loginButton = document.getElementById("loginButton");
+
+      loginButton.addEventListener("click", function () {
+        loginUser();
+      });
+    });
+   // function handleSearchInput(event) {
+   //   if (event.key === "Enter") {
+   //     document.querySelector('.header button:last-child').click();
+    //  }
+   // }//
+    document.getElementById('passwordInput').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+      loginUser();
+    }
+    });
+    document.getElementById('usernameInput').addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        loginUser();
+      }
+    });
+  </script>
+  <script src="scripts/element_class.js"></script>
+  <script src="scripts/navigation_bar.js"></script>
+  <script src="scripts/login_page.js"></script>
+  <script src="scripts/movie_page.js"></script>
+  <script src="scripts/jmdb_main.js"></script>
+  <script src="scripts/search.js"></script>
+  <script src="../lib/keyval.js"></script>
+</body>
+
+</html>

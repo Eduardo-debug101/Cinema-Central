@@ -1,0 +1,1235 @@
+.hidden {
+  display: none;
+}
+
+.leave-comment {
+  display: flex;
+  justify-content: center;
+
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.header {
+  --header-height: 4rem;
+  --header-color: #AFCCE9;
+}
+body {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  background-color: #131e34;
+  display:flex;
+  flex-direction: column;
+  overflow:hidden;
+}
+
+main {
+  flex-grow: 1;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  min-height: calc(100vh - 7rem);
+}
+
+.nav-bar.default {
+  /*physical properties*/
+  --font-size: 1.1rem;
+  --vertical-margin: 0.1rem;
+  --horizontal-margin: 0.4rem;
+  --vertical-padding: 1rem;
+  --horizontal-padding: 0.4rem;
+  --border-radius: 50px;
+  --logo-height: var(--header-height);
+
+  /*color properties*/
+  --background-color: var(--header-color);
+  --link-color: #AFCCE9;
+  --text-color: #131e34;
+  --link-color-hover: #131e34;
+  --text-color-hover: #AFCCE9;
+  --active-color: darkRed;
+}
+.header {
+  position: sticky;
+  top: 0;
+  min-height: var(--header-height);
+  background-color: var(--header-color);
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  background-color: var(--background-color);
+  height: 100%;
+
+  & .filler {
+    flex-grow: 1;
+  }
+
+  & .text-container {
+    font-size: var(--font-size);
+    margin: var(--horizontal-margin) var(--vertical-margin);
+    padding: var(--horizontal-padding) var(--vertical-padding);
+    background-color: var(--link-color);
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    color: var(--text-color);
+    transition: 100ms;
+
+  }
+
+  & .active.text-container {
+    text-decoration: underline;
+    text-decoration-color: var(--active-color);
+    text-decoration-thickness: 3px;
+  }
+
+  & :is(.link, .button).text-container:hover  {
+    cursor: pointer;
+    background-color: var(--link-color-hover);
+    color: var(--text-color-hover);
+  }
+
+  & :is(.link, .button):active {
+    transform: scale(0.95);
+  }
+
+  & img {
+    display: block;
+    height: var(--logo-height);
+    width: var(--logo-height);
+    transition: 100ms;
+  }
+
+  & .profile-picture img {
+    --horizontal-margin: 0.5rem;
+    --vertical-margin: 0.5rem;
+    border: 2px solid #131e34;
+    border-radius:  var(--logo-height);
+    margin: var(--horizontal-margin) var(--vertical-margin);
+    height:  calc(var(--logo-height) - 2 * var(--vertical-margin));
+    width:  calc(var(--logo-height) - 2 * var(--horizontal-margin));
+  }
+
+  & img:hover {
+    transform: scale(1.1);
+  }
+}
+
+.redirectToDiscussion {
+  font-size: 1rem;
+  border-radius: 5px;
+    width: 100%;
+    margin-top: 1.5rem;
+    color: white;
+    padding: 1rem 10rem;
+    border-color: white;
+    border-style: solid;
+    background-color:  #19315c;
+
+    &:hover {
+      background-color:  #243b66;
+    }
+
+    &:focus {
+      background-color:  rgb(17, 32, 59)
+    }
+
+  &:hover {
+    background-color: white;
+    color:rgb(17, 32, 59);
+  }
+}
+
+.message-layout {
+  display: grid;
+  grid-template-columns: min(100%, 40rem);
+  grid-template-rows: auto 1fr auto;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem;
+
+  & .messages {
+    & > * {
+      background-color: #243b66;;
+      color: white;
+      overflow: hidden;
+    }
+  }
+  
+  & .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    padding: 1rem;
+
+    overflow: hidden;
+  }
+
+  & > * {
+    border-radius: 5px;
+    border: 3px solid white;
+    background-color: #2D669F;
+    color: white;
+    padding: 0.5rem;
+  }
+  
+  & .message-form {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+  }
+
+  & :is(input, textarea, select, select *, button) {
+    border-radius: 5px;
+    margin: 0.5rem;
+    color: white;
+    padding: 0.8rem;
+    border-color: white;
+    border-style: solid;
+    background-color:  #19315c;
+
+    &:hover {
+      background-color:  #243b66;
+    }
+
+    &:focus {
+      background-color:  rgb(17, 32, 59)
+    }
+  }
+
+  & button {
+    padding: 0.5rem 1rem;
+    &:hover {
+      background-color: white;
+      color:rgb(17, 32, 59);
+    }
+  }
+}
+
+.messages {
+  color: #AFCCE9;
+  overflow-x: scroll;
+
+  & > * {
+    border: 1px solid white;
+    margin: 0.5rem;
+    padding: 0.5rem;
+  }
+}
+
+.card-deck.default {
+  /*Card size properties*/
+  --card-margin: 1.5rem;
+  --card-width: 8rem;
+  --card-title-font-size: 0.8rem;
+  --card-title-max-lines: 2;
+  --card-title-min-height: 3rem;
+  --card-title-padding: 0.5rem;
+
+  /*Card image properties*/
+  --card-default-image: url("../assets/Loading_Placeholder.png");
+
+  /*Card color properties*/
+  --card-background-color: #2D669F;
+  --card-box-shadow-color: rgb(0, 0, 0);
+  --card-text-color-hover: black;
+  --card-background-color-hover: #AFCCE9;/* #E2E8DD;*/
+  --card-text-color: white; 
+}
+
+.card-deck.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--card-width), 1fr));
+  justify-content: center;
+  gap: var(--card-margin);
+  /* justify-content: center;
+  align-items: flex-end;
+  flex-wrap: wrap; */
+  padding: var(--card-margin);
+
+  & .card-container {
+    width: 100%;
+  }
+}
+
+/*Vertical Deck*/
+.card-deck.flex {
+  gap: var(--card-margin);
+  /* justify-content: center;
+  align-items: flex-end;
+  flex-wrap: wrap; */
+  padding: var(--card-margin);
+  display: flex;
+  overflow-y: auto;
+
+  .card-container {
+    width: var(--card-width);
+  }
+}
+
+.card-deck.flex .card-container {
+  flex-shrink: 0;
+}
+
+.card-link {
+  text-decoration: none;
+  display: block;
+  transition: 100ms;
+}
+
+.card-link:hover {
+  transform: scale(1.1);
+  color:black;
+  & .title-container {
+    background-color: var(--card-background-color-hover);
+    color: var(--card-text-color-hover);
+  }
+}
+
+.card-link:active {
+  transform: scale(1.05);
+}
+
+.card {
+  background-color: var(--card-background-color);
+  color: var(--card-text-color);
+  box-shadow: 0 0 10px 0px var(--card-box-shadow-color);
+  width: 100%;
+  transition: 100ms;
+}
+
+.title-container {
+  display: flex;
+  background-color: var(--card-background-color);
+  color: var(--card-text-color);
+  min-height: var(--card-title-min-height);
+  padding: var(--card-title-padding);
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  transition: 100ms;
+}
+
+.title {
+  text-align: center;
+  font-size: var(--card-title-font-size);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: var(--card-title-max-lines); 
+  -webkit-box-orient: vertical;
+}
+
+.card .image {
+  vertical-align: middle;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  background-image: var(--card-default-image);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.tmdb-list-options {
+  grid-column: 1 / -1;
+}
+
+.tmdb-list-item {
+  color: #AFCCE9;
+  display: block;
+  font-size: 1rem;
+  margin-right: 1rem;
+}
+.tmdb-list-input {
+  margin: 0.5rem 0.2rem;
+  padding: 0.4rem 0.6rem;
+  margin-left: 0;
+  color: #131e34;
+  display: block;
+  font-size: 1rem;
+}
+
+.search-box {
+  display: flex;
+}
+
+/*Vertical Deck*/
+.horizontal-deck {
+  flex-wrap: nowrap !important;
+  overflow-y: auto;
+}
+
+.horizontal-deck .card-container {
+  flex-shrink: 0;
+}
+
+.loader {
+  /*https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_loader*/
+  border: 16px solid #131e34;;
+  border-radius: 50%;
+  border-top: 16px solid #AFCCE9;
+  width: 60px;
+  height: 60px;
+  -webkit-animation: spin 0.5s linear infinite; /* Safari */
+  animation: spin 0.5s linear infinite;
+  margin: auto;
+}
+@-webkit-keyframes spin {
+  /*https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_loader*/
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  /*https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_loader*/
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.logo_image {
+  display: flex;
+  flex-wrap: wrap;
+  width: 15%;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+}
+
+.movie_page {
+  flex: grow;
+  width: 100%;
+  background-color: #19315c;
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+}
+
+.movie_page_left {
+  width: 20%;
+  /* height: 100vh; */
+  background-color: #152749;
+}
+
+.movie_page_right {
+  float: left;
+  width: 76%;
+  /* height: 100vh; */
+  color: white;
+  margin-left: 2%;
+  margin-right: 2%;
+  /* overflow: scroll */
+}
+
+.movie_page_image {
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 5%;
+  padding-bottom: 0%;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  flex-wrap: wrap;
+  display: flex;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  object-position: center;
+}
+
+.movie_title {
+  padding-left: 5%;
+  padding-right: 5%;
+  text-align: center;
+  color: white;
+  width: auto;
+}
+
+.movie_detail_text {
+  padding-left: 5%;
+  padding-right: 5%;
+  text-align: center;
+  color: white;
+  width: auto;
+  font-size: 1.3em;
+}
+
+ .movie_tagline {
+  padding-left: 5%;
+  padding-right: 5%;
+  text-align: center;
+  color: white;
+  width: auto;
+  font-style: italic;
+  font-size: 1.3em; 
+} 
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2em; /* Adjust the font size as needed */
+  color: white; /* Set the text color to white or a contrasting color */
+}
+
+.author-details {
+  display: flex;
+  align-items: center;
+}
+
+.search_results_title {
+  color: white;
+  text-align: center;
+  width: auto;
+  height: auto;
+}
+
+.actor img {
+  width: 100px; 
+  height: auto; 
+  object-fit: cover; 
+}
+
+.actors-container {
+  display: flex;      
+  flex-wrap: wrap;    
+  justify-content: center; 
+  gap: 10px;         
+}
+
+.actor {
+  flex: 0 1 auto; 
+  margin: 5px; 
+  text-align: center;
+}
+
+#actors_div {
+  margin-bottom: 3rem;
+}
+
+
+/* Login Page CSS */
+/* .login_page_content{
+  display: flex;
+  flex-direction: column;
+  margin-top: 1%;
+  margin-left: auto;
+  margin-right: auto;
+  width:15%;
+  background-color: #AFCCE9;
+  border-radius: 40px;
+  border: #131e34;
+  padding: 15px;
+  align-items: center;
+}
+
+.login_page_title{
+  display: block;
+  width: fit-content;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  margin-top: 0%;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-style: italic;
+}
+
+.login_page_input{
+  height: 10%;
+  margin-bottom: 10px;
+  width: 100%;
+  font-size: larger;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: center;
+}
+
+.login_button{
+  font-size: larger;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  height: 10%;
+  margin-bottom: 10px;
+  width: 50%
+}
+
+.login_header_button{
+  display:none;
+}
+
+.logout_header_button{
+  display:none;
+}
+
+.username_header{
+  color: #131e34;
+  text-align: center;
+  margin-top: -5px;
+  margin-right: 5px;
+  font-size: x-large;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}*/
+
+.subheader{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+
+main.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  
+
+  & :is(div, form) {
+    width: 25rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    background-color: #2D669F;
+    padding: 2rem;
+    font-size: 1.2rem;
+    color: white;
+    border: 0.5rem solid white;
+    border-radius: 1rem;
+    margin-bottom: 4rem;
+
+    & > * {
+      margin: 0;
+    }
+
+    & h1 {
+      display: flex;
+      justify-content: center;
+    }
+
+    & label {
+      margin-bottom: -0.5rem
+      
+    }
+
+    & button {
+      background-color: #19315c;
+      font-size: 1rem;
+      color: white;
+      border-radius: 40px;
+      border: none;
+      padding: 0.8rem;
+      cursor: pointer;
+      transition: 100ms;
+
+      &:hover {
+
+        background-color: white;
+        color: black;
+        border: white;
+      }
+    }
+  
+    & :is(input, textarea, select, select *) {
+      font-size: 0.9rem;
+      border-radius: 5px;
+      color: white;
+      padding: 0.8rem;
+      border: 1px solid white;
+      background-color:  #19315c;
+
+      &:hover {
+        background-color:  #243b66;
+      }
+
+      &:focus {
+        background-color:  rgb(17, 32, 59)
+      }
+    }
+    
+  }
+}
+
+/* Basic styles for layout */
+body {
+  font-family: Arial, sans-serif;
+} 
+
+#video-container {
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Add this CSS to your style.css file or within a <style> tag in your HTML head */
+#loadMoreButton {
+  background-color: #2D669F;
+  color: white;
+  border-radius: 40px;
+  border: none;
+  padding: 10px 27px;
+  cursor: pointer;
+}
+
+#loadMoreButton:hover {
+  background-color: #2980b9; /* Change the background color on hover */
+}
+
+#profile-container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#logout-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 20px 0;
+  cursor: pointer;
+}
+
+#user-profile {
+  max-width: 700px; /* Increase the maximum width */
+  width: 90%; /* Use a percentage of the viewport width for responsiveness */
+  margin: 20px auto; /* Center the profile in the page */
+  padding: 10px;
+  background-color: #f0f8ff; /* Change to a desired color */
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center; /* Center-align the text and contents */
+}
+
+#username {
+  font-size: 60px;
+  font-weight: bold;
+  margin: 0;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: center;
+}
+
+#friend-username {
+  font-size: 60px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: center;
+}
+
+#bio {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+#friend-bio {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+#profile-picture {
+  --margin: 0.5rem;
+  /*position: fixed;  Fixed position */
+  /*top: 10px;  10px from the top */
+ /* right: 10px;  10px from the right */
+  /*width: 100px;  Adjust as needed */
+  /*height: 100px;  Adjust as needed */
+  height: calc( var(--header-height) - 2 * var(--margin));
+  margin: var(--margin);
+  aspect-ratio: 1/1;
+  border-radius: 50%; /* Make it round */
+  cursor: pointer; /* Change cursor on hover */
+  /*z-index: 1000;  Ensure it's above other elements */
+}
+
+#profile-picture2 {
+  width: 150px;  /* Adjust as needed */
+  height: 150px; /* Adjust as needed */
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+#profile-picture-selector {
+  margin-top: 10px; /* Adjust as needed */
+  width: 100px;
+  align-self: center; /* Center horizontally */
+}
+
+#profile-navigation-buttons {
+  display:flex;
+}
+
+#edit-profile-button {
+  /* display: flex; */
+  margin-left: auto;
+  background-color: #19315c;
+  color: white;
+  border-radius: 40px;
+  border: none;
+  padding: 10px 27px;
+  cursor: pointer;
+}
+
+#edit-profile-button:hover {
+  /* display: flex; */
+  margin-left: auto;
+  /* transform: scale(1.05); */
+  background-color: white;
+  color: black;
+  /* border-radius: 40px; */
+  border: white;
+}
+
+#edit-controls {
+  margin-top: 1rem; /* Add some space above the edit controls */
+  text-align: center; /* Center the controls */
+}
+
+#bio-edit {
+  width: 38rem; /* Make the textarea span the full width */
+  /*margin-bottom: 0.5rem; Space between textarea and button */
+}
+
+#friends-section {
+  /* height: 200px; Remove the fixed height property */
+  overflow-y: auto;
+}
+
+#friends-section h2 {
+  border-bottom: 4px solid white; /* Increase the thickness of the white line */
+  padding-bottom: 8px; /* Optional: Adjust padding for spacing */
+  margin-bottom: 10px; /* Optional: Adjust margin for spacing */
+}
+
+#friends-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#friends-list li {
+  margin-bottom: 8px; /* Optional: Add spacing between friend items */
+}
+
+#interests-section {
+  border-bottom: 2px solid white; /* Adds a white border below the Interests section */
+  margin-bottom: 10px; /* Adds a white margin below the Interests section */
+}
+
+/* Friend System Stuff */
+
+.friend_requests{
+  border-bottom: 4px solid white; /* Increase the thickness of the white line */
+  padding-bottom: 8px; /* Optional: Adjust padding for spacing */
+  margin-bottom: 10px; /* Optional: Adjust margin for spacing */
+}
+
+.friend_request_input_container{
+  width: 100%;
+  border-top: 4px solid white;
+  border-width: 5px;
+  align-content: center;
+  padding-bottom: 3%;
+}
+
+.friend_request_input{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  height: 100%;
+}
+
+.friend-request-input-box{
+  align-self: center;
+  border-radius: 40px;
+  border-color: white;
+  border-style: solid;
+  background-color:  #19315c;
+  color: white;
+  aspect-ratio: 6 / 1;
+  text-align: center;
+  font-weight: bold;
+  font-size: large;
+}
+
+.friend-request-input-box::placeholder{
+  border-radius: 40px;
+  background-color:  #19315c;
+  color: rgba(255, 255, 255, 0.74);
+  aspect-ratio: 4 / 1;
+  text-align: center;
+  font-weight:lighter;
+  font-style: italic;
+  font-size: large;
+}
+
+/* Add styling for the friend request list container */
+.friend-request-list-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+}
+
+/* Add styling for the friend request container */
+.friend-request-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin: 2%;
+  width: 29%;
+}
+
+.friend_request_username{
+  background-color: #19315c;
+  padding: 1%;
+  border-radius: 40px;
+  font-size: 100%;
+  font-weight: bolder;
+}
+
+.friend-profile-picture-container {
+  position: relative; /* Ensure a positioned ancestor for absolute positioning */
+  width: 100%;
+  margin-top: 4%;
+  margin-bottom: 4%;
+  aspect-ratio: 1 / 1;
+}
+
+/* Add a class for styling the friend profile pictures */
+.friend-profile-picture {
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  border: #19315c;
+  border-width: 5px;
+  border-style: solid;
+  aspect-ratio: 1 / 1;
+}
+
+.friend-profile-picture-hover {
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.friend-profile-picture-hover:hover {
+  transform: scale(1.1); /* Increase the size by 10% on hover */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a subtle box shadow */
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  border-radius: 5px;
+  margin: 0.5rem;
+  color: white;
+  padding: 0.5rem;
+  border-color: white;
+  border-style: solid;
+  background-color: #19315c;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  
+  z-index: 1;
+}
+
+.dropdown-menu div {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.dropdown-menu div:hover {
+  background-color: #30487b; /* Adjusted hover color for better visibility */
+}
+
+
+/* Add styling for the friend request buttons */
+.friend-request-button {
+  width: 48%;
+  height: 100%;
+  background-color: #19315c;
+  font-size: 100%;
+  margin: 1%;
+  color: white;
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+}
+
+.friend-request-button:hover{
+  /* transform: scale(1.02); */
+  background-color: white;
+  font-weight: bold;
+  color: black;
+  border-radius: 40px;
+  border: white;
+}
+
+.friend-request-buttons {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 0%; /* Adjust the margin as needed */
+}
+
+#movie-watchlist-section {
+  height: 200px; /* Set the desired height for the movie watchlist section */
+  padding: 10px; /* Optional: Add padding for better styling */
+  overflow-y: auto; /* Add a vertical scrollbar if the content exceeds the height */
+}
+
+#movie-watchlist-section h2 {
+  border-bottom: 2px solid white; /* Add a white line below the h2 text */
+  width: 100%; /* Make the line extend across the width of the container */
+  padding-bottom: 8px; /* Optional: Adjust padding for spacing */
+  margin-bottom: 10px; /* Optional: Adjust margin for spacing */
+}
+
+/* button on movie page when movie is bookmarked */
+.movie-bookmarked {
+  background-color: red;
+  color: white;
+  border-radius: 40px;
+  border: none;
+  padding: 10px 27px;
+  cursor: pointer;
+}
+
+/* for hover when movie button is selected */
+.movie-bookmarked:hover {
+  /* transform: scale(1.05); */
+  border-radius: 40px;
+  border: white;
+}
+
+/* default bookmark button style */
+.bookmark-default {
+  background-color: #2D669F;
+  color: white;
+  border-radius: 40px;
+  border: none;
+  padding: 10px 27px;
+  cursor: pointer;
+}
+
+/* default button hover behavior */
+.bookmark-default:hover {
+  /* transform: scale(1.05); */
+  background-color: red;
+  border-radius: 40px;
+  border: white;
+}
+
+/* button on movie page when movie is bookmarked */
+.movie-watched {
+  background-color: red;
+  color: white;
+  border-radius: 40px;
+  border: none;
+  padding: 10px 27px;
+  cursor: pointer;
+}
+
+/* for hover when movie button is selected */
+.movie-watched:hover {
+  /* transform: scale(1.05); */
+  border-radius: 40px;
+  border: white;
+}
+
+/* default bookmark button style */
+.watchlist-default {
+  background-color: #2D669F;
+  color: white;
+  border-radius: 40px;
+  border: none;
+  padding: 10px 27px;
+  cursor: pointer;
+}
+
+/* default button hover behavior */
+.watchlist-default:hover {
+  /* transform: scale(1.05); */
+  background-color: red;
+  border-radius: 40px;
+  border: white;
+}
+
+/* button on movie page when movie is favorited */
+.movie-favorited {
+  background-color: red;
+  color: white;
+  border-radius: 40px;
+  border: none;
+  padding: 10px 27px;
+  cursor: pointer;
+}
+
+/* for hover when movie button is selected */
+.movie-favorited:hover {
+  /* transform: scale(1.05); */
+  background-color: white;
+  color: red;
+  border-radius: 40px;
+  border: white;
+}
+
+/* default favorite button style */
+.favorite-default {
+  background-color: #2D669F;
+  color: white;
+  border-radius: 40px;
+  border: none;
+  padding: 10px 27px;
+  cursor: pointer;
+}
+
+/* default button hover behavior */
+.favorite-default:hover {
+  /* transform: scale(1.05); */
+  background-color: red;
+  border-radius: 40px;
+  border: white;
+}
+
+/* browse button when no bookmarks or watchlist movies are found for user */
+.browse-more-button {
+  background-color: #19315c;
+  color: white;
+  border-radius: 40px;
+  border: none;
+  padding: 10px 27px;
+  cursor: pointer;
+}
+
+/* Hover feature when browse button active */
+.browse-more-button:hover {
+  /* transform: scale(1.05); */
+  background-color: white;
+  color: black;
+  border-radius: 40px;
+  border: white;
+}
+
+/* save changes to profile */
+.save-changes-button {
+  background-color: #19315c;
+  color: white;
+  border-radius: 40px;
+  border: none;
+  padding: 10px 27px;
+  cursor: pointer;
+}
+
+/* Hover feature when save changes active */
+.save-changes-button:hover {
+  /* transform: scale(1.05); */
+  background-color: white;
+  color: black;
+  border-radius: 40px;
+  border: white;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+/* profile buttons */
+.standard-button {
+  background-color: #19315c;
+  margin: 2px;
+  color: white;
+  border-radius: 40px;
+  border: none;
+  padding: 10px 27px;
+  cursor: pointer;
+}
+
+/* profile buttons */
+.standard-button:hover {
+  /* transform: scale(1.05); */
+  background-color: white;
+  color: black;
+  border-radius: 40px;
+  border: white;
+}
+
+/* profile buttons */
+.selected-standard-button {
+  /* transform: scale(1.05); */
+  background-color: white;
+  margin: 2px;
+  color: black;
+  border-radius: 40px;
+  border: none;
+  padding: 10px 27px;
+  cursor: pointer;
+}
+
+/* firefox */
+
+/* width */
+::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  /* box-shadow: inset 0 0 5px grey;  */
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #154677; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #275787; 
+}
+
+.profile-box {
+  background-color: #2D669F;
+  padding: 1rem;
+  color: white;
+
+  & input {
+    width: calc(50% - 3.15rem);
+  }
+  
+  & button {
+    margin: 0.5rem 0.2rem;
+  }
+
+  & :is(input, textarea, select, select *) {
+    border-radius: 5px;
+    color: white;
+    padding: 0.5rem;
+    margin: 1rem;
+    border-color: white;
+    border-style: solid;
+    background-color:  #19315c;
+
+    &:hover {
+      background-color:  #243b66;
+    }
+
+    &:focus {
+      background-color:  rgb(17, 32, 59)
+    }
+  }
+  
+}
